@@ -45,15 +45,15 @@ This screenshot shows what needs to be changed in order to fix the test. The pro
 [Repository Link](https://github.com/Colton-Zecca/oss-lab8-part4)
 
 ### Verified Tests' Execution
-![Illustration of the pull request after running the action](Checkpoint4Verify.png)
+![Illustration of the pull request after running the action](./screenshots/Checkpoint4Verify.png)
 
 ### Pull Request After Actions Execute Successfully
-![Illustration of the pull request after running the action](Checkpoint4PullRequest.png)
+![Illustration of the pull request after running the action](./screenshots/Checkpoint4PullRequest.png)
 
 ### Successful Workflows (i.e. successful push executions)
-![Illustration of the actions workflow for the push and the pull request](Checkpoint4SuccessfulWorkflows.png)
+![Illustration of the actions workflow for the push and the pull request](./screenshots/Checkpoint4SuccessfulWorkflows.png)
 
 ## Checkpoint 5 - Project Updates
-Please complete the steps in the following file - [../../Resources/ProjectInitial.md](../../Resources/ProjectInitial.md)
+Please complete the steps in the [/Resources/ProjectInitial.md](https://github.com/rcos/CSCI-4470-OpenSource/blob/master/Resources/ProjectInitial.md) file from the OSS repository.
 
-Done, see the Open Source Software discord for the __VirtualTab__ project.
+Done, see the Open Source Software Discord and look for the __VirtualTab__ project.
