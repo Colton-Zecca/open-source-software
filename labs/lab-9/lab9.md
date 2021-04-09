@@ -13,7 +13,7 @@ Notes...
 
 
 ## Example 3
-
+[Link to Dockerfile](example03/Dockerfile)
 
 ## Example 4
 
