@@ -16,7 +16,8 @@ Notes...
 [Link to Dockerfile](example03/Dockerfile)
 
 ## Example 4
-
+[Link to Dockerfile](example04/messageApp/Dockerfile)
+[Link to docker-compose](example04/messageApp/docker-compose.yml)
 
 ## Licensing
 The example code used in this lab comes from the [rcos/docker-examples](https://github.com/rcos/docker-examples) repository, which uses the MIT License. For more information about licensing for the example code, click [here](https://github.com/rcos/docker-examples/blob/73a1c960f305d3d7c435f5f75cdad7343fddd610/LICENSE).
