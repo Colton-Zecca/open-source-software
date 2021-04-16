@@ -45,11 +45,14 @@ _Skipping over records in between..._
 
 [Checkpoint 5 Script](./checkpoint5.py)
 
-__Checkpoint 5 Output:__
+### Running `checkpoint5.py`
+Note the "A" debug print statement, that shows whether or not a date is found and whether or not we're appending to "dates" or creating the initial "dates" array.
 ![Checkpoint 5 Screenshot A](./screenshots/5a.png)
-_Skipping over records in between..._
+
+### Calling `find()` in `mongo`
+Note that I only input 5 definitions. After running the python script a couple times as shown in the screenshot above, we can see here that the word "ACM" was randomly hit one by the python script (since there's one entry in "dates"). We can also see how the word "ACM" was hit twice by our python script, so it concatenated the second date onto the end of that "dates" array. The other 3 words didn't get hit by my python script. Each test case is shown! On the first try, too! Ok, time to get sleep now.
 ![Checkpoint 5 Screenshot B](./screenshots/5b.png)
 
 ---
 ## Licensing
-See parent main repository license.
+See main LICENSE used for this repository.
