@@ -1,7 +1,7 @@
 # Lab 10 Report - MongoDB
 
 ## Checkpoint 0: Project Updates
-[Blog Post](https://github.com/Colton-Zecca/open-source-software/wiki/Lab-10-Blog-Post)
+[Blog Post:](https://github.com/Colton-Zecca/open-source-software/wiki/Did-MongoDB-have-every-right-to-change-their-license,-or-were-they-usurping-developer's-rights%3F) _Did MongoDB have every right to change their license, or were they usurping developer's rights?_
 
 ---
 ## Checkpoint 1: Install MongoDB
