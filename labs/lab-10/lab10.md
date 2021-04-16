@@ -1,7 +1,7 @@
 # Lab 10 Report - MongoDB
 
 ## Checkpoint 0: Project Updates
-<!-- ![Checkpoint 0 Link](./screenshots/00-RunWhalesay.png) -->
+[Blog Post](https://github.com/Colton-Zecca/open-source-software/wiki/Lab-10-Blog-Post)
 
 ---
 ## Checkpoint 1: Install MongoDB
@@ -43,6 +43,13 @@ _Skipping over records in between..._
 ---
 ## Checkpoint 5: Random Word Requester
 
+[Checkpoint 5 Script](./checkpoint5.py)
+
+__Checkpoint 5 Output:__
+![Checkpoint 5 Screenshot A](./screenshots/5a.png)
+_Skipping over records in between..._
+![Checkpoint 5 Screenshot B](./screenshots/5b.png)
 
 ---
 ## Licensing
+See parent main repository license.
