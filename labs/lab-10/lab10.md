@@ -33,6 +33,12 @@
 ---
 ## Checkpoint 4: Driving Queries
 
+[Checkpoint 4 Script](./checkpoint4.py)
+
+__Checkpoint 4 Output:__
+![Checkpoint 4 Output A](./screenshots/4a.png)
+_Skipping over records in between..._
+![Checkpoint 4 Output B](./screenshots/4b.png)
 
 ---
 ## Checkpoint 5: Random Word Requester
