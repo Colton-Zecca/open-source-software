@@ -57,7 +57,10 @@ my_image_predictions[2]: [2.9838379e-10 3.2054711e-08 6.8288393e-09 2.9382446e-1
 ### Notes on Predictions
 Due to issues with noise in the images, I was unable to get it to recognize the correct image despite doing all of the proper image handling. In the essence of time, I'm going to submit what I have now to show that I have working code and make some commits after to try and get rid of some of the noise in my images. If I get the image formatting to properly work with my custom images, I'll add them to this lab and make note that it was added after the midnight deadline for personal sake. 
 
+![Preprocessed images](./screenshots/3a.png)
+
 ![Prediction Graph](./screenshots/3.png)
+
 ---
 ## Licensing
 The code for checkpoint2.py uses the MIT license.
