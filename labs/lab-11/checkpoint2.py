@@ -43,54 +43,64 @@ def plot_value_array(i, predictions_array, true_label):
   thisplot[true_label].set_color('blue')
 
 print(tf.__version__)
+# The name associated with the label number
+class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 
+               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
 # ---------------Checkpoint 3 Image Setup--------------- #
 # For reference:
 #   screenshots/image0_original.jpg --> 4 --> Coat
 #   screenshots/image1_original.jpg --> 0 --> T-shirt/top
 #   screenshots/image2_original.jpg --> 9 --> Ankle boot
+
 img_filenames = ["screenshots/image0_original.jpg", "screenshots/image1_original.jpg", "screenshots/image2_original.jpg"]
-# my_test_images = np.array()
-i = 0
-for infile in img_filenames:
+my_test_images = []
+my_test_labels = [4, 0, 9]
+
+for index, infile in enumerate(img_filenames):
     img = Image.open(infile)
     img_gs = ImageOps.grayscale(img) # Greyscale
-    # img_gs.show()
     img_inv = ImageOps.invert(img_gs) # Inverted (white is 0)
     # img_inv.show()
-    img_crop = ImageOps.fit(img_inv, (28, 28)) # Scales the image to a square, and then crops it down to 28x28 pixels
-    img_crop.save("screenshots/image" + str(i) + "_formatted.png")
-    i += 1
+    img_crop = ImageOps.fit(img_inv, (28, 28)) # Crops the image to be a square, and then scales it down to 28x28 pixels
+    # img_crop.save("screenshots/image" + str(index) + "_formatted.png")
+    np_im = np.array(img_crop)
+    my_test_images.append(np_im)
+    
+my_test_images = np.asarray(my_test_images)
 
-# 28x28 pixels - make sure you use cropping to get your image square before resizing it
-# scaled between 0 an 1 instead of 0 and 255
-
-
-
-# Turn images into:
-#   my_test_images: numpy uint8 array of grayscale image data with shape (num_samples, 28, 28).
-
-
-# ---------------Inspect the first image--------------- #
+# Inspect the first image we converted
 # plt.figure()
 # plt.imshow(my_test_images[0])
 # plt.colorbar()
 # plt.grid(False)
 # plt.show()
 
-# my_test_images = my_test_images / 255.0
-# ---------------End Checkpoint 3 Image Setup--------------- #
+# Scale the images to be between 0 and 1 instead of 0 and 255
+my_test_images = my_test_images / 255.0
 
+# ---------------Verifying the data is in the correct format--------------- #
+# plt.figure(figsize=(10, 4))
+# for i in range(3):
+#     plt.subplot(2,3,i+1)
+#     plt.imshow(my_test_images[i])
+#     plt.colorbar()
+#     plt.grid(False)
+
+#     plt.subplot(2,3,i+4)
+#     plt.xticks([])
+#     plt.yticks([])
+#     plt.grid(False)
+#     plt.imshow(my_test_images[i], cmap=plt.cm.binary)
+#     plt.xlabel(class_names[my_test_labels[i]])
+# plt.show()
+# ---------------End Checkpoint 3 Image Setup--------------- #
 
 fashion_mnist = tf.keras.datasets.fashion_mnist
 
 # The train_images and train_labels arrays are the training set; i.e. the data the model uses to learn
 # The test_images and test_labels arrays are the test set; i.e. what the model is tested against
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
-
-# The name associated with the label number
-class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 
-               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
 # ---------------Inspect the first image--------------- #
 # plt.figure()
@@ -166,33 +176,66 @@ plt.tight_layout()
 plt.show()
 
 # ---------------Checkpoint 3--------------- #
+# my_test_images: numpy uint8 array of grayscale image data with shape (3, 28, 28).
+my_image_predictions = probability_model.predict(my_test_images)
 
-
-# Turn images into:
-#   my_test_images: numpy uint8 array of grayscale image data with shape (num_samples, 28, 28).
-
-# ---------------Inspect the first image--------------- #
-# plt.figure()
-# plt.imshow(my_test_images[0])
-# plt.colorbar()
-# plt.grid(False)
+# Checking just a single image
+# i = 0
+# plt.figure(figsize=(6,3))
+# plt.subplot(1,2,1)
+# plot_image(i, my_image_predictions[i], my_test_labels, my_test_images)
+# plt.subplot(1,2,2)
+# plot_value_array(i, my_image_predictions[i],  my_test_labels)
 # plt.show()
 
-# my_test_images = my_test_images / 255.0
+num_rows = 3
+num_cols = 1
+num_images = num_rows*num_cols
+plt.figure(figsize=(2*2*num_cols, 2*num_rows))
+for i in range(num_images):
+  plt.subplot(num_rows, 2*num_cols, 2*i+1)
+  plot_image(i, my_image_predictions[i], my_test_labels, my_test_images)
+  plt.subplot(num_rows, 2*num_cols, 2*i+2)
+  plot_value_array(i, my_image_predictions[i], my_test_labels)
+plt.tight_layout()
+plt.show()
+
+for i in range(num_images):
+    # Grab an image from the test dataset.
+    img = my_test_images[i]
+    predicted_label = np.argmax(my_image_predictions[i])
+    actual_label = my_test_labels[i]
+    print(f"my_image_predictions[{i}]: {my_image_predictions[i]}")
+    print(f"> Predicted: {predicted_label} {class_names[predicted_label]}")
+    print(f"> Actual: {actual_label} {class_names[actual_label]}")
+
+    plot_value_array(i, my_image_predictions[0], my_test_labels)
+    _ = plt.xticks(range(10), class_names, rotation=45)
+    plt.show()
 
 
-
+# # ---------------Use the Trained Model to Make a Prediction About a Single Image--------------- #
 # # Grab an image from the test dataset.
-# img = my_test_images[1]
+# img = test_images[1]
 # print(img.shape)
 
 # # Add the image to a batch where it's the only member.
 # img = (np.expand_dims(img,0))
 # print(img.shape)
 
+# # Predict the correct label for this image
 # predictions_single = probability_model.predict(img)
 # print(predictions_single)
 
 # plot_value_array(1, predictions_single[0], test_labels)
 # _ = plt.xticks(range(10), class_names, rotation=45)
+
+# # tf.keras.Model.predict returns a list of lists—one list for each image in the batch of data. Grab the predictions for our (only) image in the batch:
+# np.argmax(predictions_single[0])
+
 # plt.show()
+# # ------------------------------------------------------------------------------------------ #
+
+
+
+
