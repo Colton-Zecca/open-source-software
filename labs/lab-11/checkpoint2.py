@@ -71,9 +71,6 @@ for infile in img_filenames:
 #   my_test_images: numpy uint8 array of grayscale image data with shape (num_samples, 28, 28).
 
 
-quit()
-
-
 # ---------------Inspect the first image--------------- #
 # plt.figure()
 # plt.imshow(my_test_images[0])
