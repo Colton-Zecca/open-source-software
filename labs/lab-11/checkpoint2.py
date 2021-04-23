@@ -51,7 +51,7 @@ print(tf.__version__)
 #   screenshots/image2_original.jpg --> 9 --> Ankle boot
 img_filenames = ["screenshots/image0_original.jpg", "screenshots/image1_original.jpg", "screenshots/image2_original.jpg"]
 # my_test_images = np.array()
-img_index = 0
+i = 0
 for infile in img_filenames:
     img = Image.open(infile)
     img_gs = ImageOps.grayscale(img) # Greyscale
@@ -59,8 +59,8 @@ for infile in img_filenames:
     img_inv = ImageOps.invert(img_gs) # Inverted (white is 0)
     # img_inv.show()
     img_crop = ImageOps.fit(img_inv, (28, 28)) # Scales the image to a square, and then crops it down to 28x28 pixels
-    img_crop.save("screenshots/image" + str(img_index) + "_formatted.png")
-    img_index+= 1
+    img_crop.save("screenshots/image" + str(i) + "_formatted.png")
+    i += 1
 
 # 28x28 pixels - make sure you use cropping to get your image square before resizing it
 # scaled between 0 an 1 instead of 0 and 255
