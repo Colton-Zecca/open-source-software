@@ -8,6 +8,8 @@ import tensorflow as tf
 # Helper libraries
 import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image, ImageOps
+import glob
 
 def plot_image(i, predictions_array, true_label, img):
   true_label, img = true_label[i], img[i]
@@ -43,21 +45,33 @@ def plot_value_array(i, predictions_array, true_label):
 print(tf.__version__)
 
 # ---------------Checkpoint 3 Image Setup--------------- #
+# For reference:
+#   screenshots/image0_original.jpg --> 4 --> Coat
+#   screenshots/image1_original.jpg --> 0 --> T-shirt/top
+#   screenshots/image2_original.jpg --> 9 --> Ankle boot
+img_filenames = ["screenshots/image0_original.jpg", "screenshots/image1_original.jpg", "screenshots/image2_original.jpg"]
+# my_test_images = np.array()
+img_index = 0
+for infile in img_filenames:
+    img = Image.open(infile)
+    img_gs = ImageOps.grayscale(img) # Greyscale
+    # img_gs.show()
+    img_inv = ImageOps.invert(img_gs) # Inverted (white is 0)
+    # img_inv.show()
+    img_crop = ImageOps.fit(img_inv, (28, 28)) # Scales the image to a square, and then crops it down to 28x28 pixels
+    img_crop.save("screenshots/image" + str(img_index) + "_formatted.png")
+    img_index+= 1
 
-
-
-
-
-# Greyscale
 # 28x28 pixels - make sure you use cropping to get your image square before resizing it
-# inverted (white is 0)
 # scaled between 0 an 1 instead of 0 and 255
+
+
 
 # Turn images into:
 #   my_test_images: numpy uint8 array of grayscale image data with shape (num_samples, 28, 28).
 
 
-
+quit()
 
 
 # ---------------Inspect the first image--------------- #

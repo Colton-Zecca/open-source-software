@@ -17,7 +17,7 @@ __Original Image:__
 ![Image 0 Original](./screenshots/image0_original.jpg)
 
 __Greyscale 28x28 Pixel Image:__
-![Image 0 Formatted](./screenshots/image0_formatted.jpg)
+![Image 0 Formatted](./screenshots/image0_formatted.png)
 
 __Result of Classification:__
 ![Image 0 Classification](./screenshots/image0_classification.png)
@@ -27,7 +27,7 @@ __Original Image:__
 ![Image 1 Original](./screenshots/image1_original.jpg)
 
 __Greyscale 28x28 Pixel Image:__
-![Image 1 Formatted](./screenshots/image1_formatted.jpg)
+![Image 1 Formatted](./screenshots/image1_formatted.png)
 
 __Result of Classification:__
 ![Image 1 Classification](./screenshots/image1_classification.png)
@@ -37,7 +37,7 @@ __Original Image:__
 ![Image 2 Original](./screenshots/image2_original.jpg)
 
 __Greyscale 28x28 Pixel Image:__
-![Image 2 Formatted](./screenshots/image2_formatted.jpg)
+![Image 2 Formatted](./screenshots/image2_formatted.png)
 
 __Result of Classification:__
 ![Image 2 Classification](./screenshots/image2_classification.png)
