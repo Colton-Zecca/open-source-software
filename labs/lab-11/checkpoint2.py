@@ -8,7 +8,7 @@ import tensorflow as tf
 # Helper libraries
 import numpy as np
 import matplotlib.pyplot as plt
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageFilter
 import glob
 
 def plot_image(i, predictions_array, true_label, img):
@@ -59,11 +59,14 @@ my_test_labels = [4, 0, 9]
 
 for index, infile in enumerate(img_filenames):
     img = Image.open(infile)
+    if index == 2:
+        img = ImageOps.mirror(img) #The boot has to have the toe facing the left side in order to work...
     img_gs = ImageOps.grayscale(img) # Greyscale
-    img_inv = ImageOps.invert(img_gs) # Inverted (white is 0)
-    # img_inv.show()
+    img_smoothed = img_gs.filter(ImageFilter.SMOOTH_MORE) #TODO better way to use this?
+    img_autocontrast = ImageOps.autocontrast(img_smoothed, (30, 60))
+    img_inv = ImageOps.invert(img_autocontrast) # Inverted (white is 0)
     img_crop = ImageOps.fit(img_inv, (28, 28)) # Crops the image to be a square, and then scales it down to 28x28 pixels
-    # img_crop.save("screenshots/image" + str(index) + "_formatted.png")
+    # img_crop.save("screenshots/image" + str(index) + "_formatted_improved.png")
     np_im = np.array(img_crop)
     my_test_images.append(np_im)
     
@@ -80,20 +83,20 @@ my_test_images = np.asarray(my_test_images)
 my_test_images = my_test_images / 255.0
 
 # ---------------Verifying the data is in the correct format--------------- #
-# plt.figure(figsize=(10, 4))
-# for i in range(3):
-#     plt.subplot(2,3,i+1)
-#     plt.imshow(my_test_images[i])
-#     plt.colorbar()
-#     plt.grid(False)
+plt.figure(figsize=(10, 4))
+for i in range(3):
+    plt.subplot(2,3,i+1)
+    plt.imshow(my_test_images[i])
+    plt.colorbar()
+    plt.grid(False)
 
-#     plt.subplot(2,3,i+4)
-#     plt.xticks([])
-#     plt.yticks([])
-#     plt.grid(False)
-#     plt.imshow(my_test_images[i], cmap=plt.cm.binary)
-#     plt.xlabel(class_names[my_test_labels[i]])
-# plt.show()
+    plt.subplot(2,3,i+4)
+    plt.xticks([])
+    plt.yticks([])
+    plt.grid(False)
+    plt.imshow(my_test_images[i], cmap=plt.cm.binary)
+    plt.xlabel(class_names[my_test_labels[i]])
+plt.show()
 # ---------------End Checkpoint 3 Image Setup--------------- #
 
 fashion_mnist = tf.keras.datasets.fashion_mnist
@@ -209,7 +212,7 @@ for i in range(num_images):
     print(f"> Predicted: {predicted_label} {class_names[predicted_label]}")
     print(f"> Actual: {actual_label} {class_names[actual_label]}")
 
-    plot_value_array(i, my_image_predictions[0], my_test_labels)
+    plot_value_array(i, my_image_predictions[i], my_test_labels)
     _ = plt.xticks(range(10), class_names, rotation=45)
     plt.show()
 
